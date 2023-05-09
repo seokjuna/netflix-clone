@@ -107,8 +107,8 @@ const navVariants = {
 
 function Header() {
     const [searchOpen, setSearchOpen] = useState(false);
-    const homeMatch = useMatch("/");
-    const tvMatch = useMatch("tv");
+    const homeMatch = useMatch("/"); // const homeMatch: PathMatch<string> | null = useMatch("/");
+    const tvMatch = useMatch("tv"); // const tvMatch: PathMatch<string> | null = useMatch("tv");
     const inputAnimation = useAnimation();
     const navAnimation = useAnimation();
     const toggleSearch = () => {
@@ -127,7 +127,7 @@ function Header() {
     };
     const { scrollY } = useScroll();
     useEffect(() => {
-        scrollY.onChange(() => {
+        scrollY.on("change", () => {
             if(scrollY.get() > 80) {
                 navAnimation.start("scroll");
             } else {
