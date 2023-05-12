@@ -5,6 +5,7 @@ import { makeImagePath } from "./utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import useWindowDimensions from "../Components/useWindowDimensions";
+import { useMatch, useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
     background: black;
@@ -63,6 +64,7 @@ const Box = styled(motion.div)<{ bgPhoto: string }>`
     &:last-child {
         transform-origin: center right;
     }
+    cursor: pointer;
 `;
 
 const Info = styled(motion.div)`
@@ -105,6 +107,9 @@ const infoVariants = {
 const offset = 6;
 
 function Home() {
+    const navigate = useNavigate();
+    const bigMovieMatch = useMatch("/movies/:id"); // const moviePathMatch<string> | null = useMatch("/movies/:id");
+    console.log(bigMovieMatch)
     const width = useWindowDimensions();
     const { data, isLoading } = useQuery<IGetMoviesResult>(
         ["movies", "nowPlaying"], 
@@ -122,6 +127,9 @@ function Home() {
         }
     };
     const toggleLeaving = () => setLeaving((prev) => !prev);
+    const onBoxClicked = (movieId: number) => {
+        navigate(`/movies/${movieId}`);
+    };
 
     return (
         <Wrapper>
@@ -150,6 +158,8 @@ function Home() {
                                     .slice(offset * index, offset * index + offset)
                                     .map((movie) => (
                                     <Box 
+                                        layoutId={movie.id + ""}
+                                        onClick={() => onBoxClicked(movie.id)}
                                         key={movie.id}
                                         whileHover="hover"
                                         initial="normal"
@@ -167,6 +177,24 @@ function Home() {
                             </Row>
                         </AnimatePresence>
                     </Slider>
+                    <AnimatePresence>
+                        {bigMovieMatch ? (
+                            <motion.div
+                                layoutId={bigMovieMatch.params.id}
+                                style={{ 
+                                    position: "absolute", 
+                                    width: "40vw", 
+                                    height: "80vh",
+                                    backgroundColor: "red",
+                                    top: 50,
+                                    left: 0,
+                                    right: 0,
+                                    margin: "0 auto"
+                                }}
+                            /> 
+                        ) : null}
+
+                    </AnimatePresence>
                 </>
             )}
         </Wrapper>
