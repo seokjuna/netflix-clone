@@ -14,6 +14,7 @@ const Nav = styled(motion.nav)`
     padding: 20px 60px;
     font-size: 14px;
     height: 80px;
+    z-index: 99;
 `;
 
 const Col = styled.div`
@@ -88,13 +89,14 @@ const Input = styled(motion.input)`
     transform-origin: right center;
     position: absolute;
     right: 0px;
-    padding: 5px 10px;
+    padding: 10px 10px;
     padding-left: 40px;
     z-index: -1;
     color: white;
     font-size: 16px;
     background-color: transparent;
     border: 1px solid ${(props) => props.theme.white.lighter};
+    border-radius: 10px;
 `;
 
 const navVariants = {
@@ -111,17 +113,24 @@ interface IForm {
 }
 
 function Header() {
-    const { register, handleSubmit } = useForm<IForm>();
     const navigate = useNavigate();
-    const onValid = (data: IForm) => {
-        console.log(data);
-        navigate(`/search?keyword=${data.keyword}`);
-    };
-    const [searchOpen, setSearchOpen] = useState(false);
-    const homeMatch = useMatch("/"); // const homeMatch: PathMatch<string> | null = useMatch("/");
-    const tvMatch = useMatch("tv"); // const tvMatch: PathMatch<string> | null = useMatch("tv");
-    const inputAnimation = useAnimation();
+    // 로고 클릭시 Home으로 이동
+    const onHomeClick = () => navigate("/");
+    // scroll 이동 시에 헤더색 변경
+    const { scrollY } = useScroll();
     const navAnimation = useAnimation();
+    useEffect(() => {
+        scrollY.on("change", () => {
+            if(scrollY.get() > 80) {
+                navAnimation.start("scroll");
+            } else {
+                navAnimation.start("top");
+            }
+        })
+    }, [scrollY]);
+    // 돋보기 클릭 시 인풋창 출력
+    const [searchOpen, setSearchOpen] = useState(false);
+    const inputAnimation = useAnimation();
     const toggleSearch = () => {
         if (searchOpen) {
             // trigger the close animation
@@ -136,16 +145,13 @@ function Header() {
         }
         setSearchOpen((prev) => !prev);
     };
-    const { scrollY } = useScroll();
-    useEffect(() => {
-        scrollY.on("change", () => {
-            if(scrollY.get() > 80) {
-                navAnimation.start("scroll");
-            } else {
-                navAnimation.start("top");
-            }
-        })
-    }, [scrollY]);
+
+    const homeMatch = useMatch("/"); 
+    const tvMatch = useMatch("/tv");
+    const { register, handleSubmit } = useForm<IForm>();
+    const onValid = (data: IForm) => {
+        navigate(`/search?keyword=${data.keyword}`);
+    };
     
     return (
         <Nav 
@@ -155,6 +161,7 @@ function Header() {
         >
             <Col>
                 <Logo
+                    onClick={onHomeClick}
                     variants={logoVariants}
                     animate="normal"
                     whileHover="active"
@@ -199,7 +206,7 @@ function Header() {
                         transition={{ type: "linear" }}
                         initial={{ scaleX: 0 }}
                         animate={inputAnimation}
-                        placeholder="Search for movie or tv show..."
+                        placeholder="작품을 검색하세요!"
                     />
                 </Search>
             </Col>
