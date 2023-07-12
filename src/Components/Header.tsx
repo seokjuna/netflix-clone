@@ -145,9 +145,10 @@ function Header() {
         }
         setSearchOpen((prev) => !prev);
     };
-
     const homeMatch = useMatch("/"); 
     const tvMatch = useMatch("/tv");
+    const searchMatch = useMatch("/search");
+
     const { register, handleSubmit } = useForm<IForm>();
     const onValid = (data: IForm) => {
         navigate(`/search?keyword=${data.keyword}`);
@@ -181,6 +182,11 @@ function Header() {
                     <Item>
                         <Link to="/tv">
                             TV Shows {tvMatch && <Circle layoutId="circle" />}
+                        </Link>
+                    </Item>
+                    <Item>
+                        <Link to="/search">
+                            Search {searchMatch && <Circle />}
                         </Link>
                     </Item>
                 </Items>

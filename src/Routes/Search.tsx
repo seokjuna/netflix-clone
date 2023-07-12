@@ -5,6 +5,8 @@ function Search() {
     const keyword = new URLSearchParams(location.search).get("keyword");
     console.log(keyword);
 
-    return null;
+    return (
+        <div></div>
+    )
 }
 export default Search;
