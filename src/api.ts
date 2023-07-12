@@ -1,5 +1,5 @@
-const API_KEY = "42b1dc84b3aff38d2a29e1a4f1bc2112";
-const BASE_PATH = "https://api.themoviedb.org/3";
+export const API_KEY = "42b1dc84b3aff38d2a29e1a4f1bc2112";
+export const BASE_PATH = "https://api.themoviedb.org/3";
 
 interface IMovie { // IGetMoviesResult의 results
     id: number;
@@ -17,7 +17,7 @@ export interface IGetMoviesResult {
         minimun: string;
     };
     page: number;
-		results: IMovie[]; // IMovie의 배열
+	results: IMovie[]; // IMovie의 배열
     total_pages: number;
     total_results: number;
 }
@@ -50,7 +50,7 @@ interface ITv {
     first_air_date: string;
 }
 
-export interface IGetTvShow {
+export interface IGetTvShowResult {
     page: number;
     results: ITv[];
     total_pages: number;
@@ -74,3 +74,39 @@ export function getTopRatedTvShow() {
         .then((response) => response.json()
     );
 }
+
+// export interface IGetMovieSearch {
+//     page: number;
+//     results: IMovieSearch[];
+//     total_pages: number;
+//     total_results: number;
+// }
+
+// interface IMovieSearch {
+//     backdrop_path: string;
+//     poster_path: string;
+//     id: number;
+//     title: string;
+//     overview: string;
+//     media_type: string;
+//     release_date: string;
+//     vote_average: number;
+// }
+
+// export interface IGetTvSearch {
+//     page: number;
+//     results: ITvSearch[];
+//     total_pages: number;
+//     total_results: number;
+// }
+
+// interface ITvSearch {
+//     id: number;
+//     backdrop_path: string;
+//     poster_path: string;
+//     name: string;
+//     overview: string;
+//     vote_average: number;
+//     first_air_date: string;
+// }
+

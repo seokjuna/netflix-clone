@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import useWindowDimensions from "./useWindowDimensions";
-import { IGetTvShow, getPopularTvShow, getTopRatedTvShow, getTvShow } from "../api";
+import { IGetTvShowResult, getPopularTvShow, getTopRatedTvShow, getTvShow } from "../api";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
@@ -161,15 +161,15 @@ const offset = 6;
 function TvSlider() {
     const width = useWindowDimensions();
     // api 받아오기
-    const { data: onTheAir } = useQuery<IGetTvShow>(
+    const { data: onTheAir } = useQuery<IGetTvShowResult>(
         ["tvShow", "onTheAir"],
         getTvShow
     );
-    const { data: popular } = useQuery<IGetTvShow>(
+    const { data: popular } = useQuery<IGetTvShowResult>(
         ["tvShow", "popular"],
         getPopularTvShow
     );
-    const { data: topRated } = useQuery<IGetTvShow>(
+    const { data: topRated } = useQuery<IGetTvShowResult>(
         ["tvShow", "topRated"],
         getTopRatedTvShow
     );

@@ -16,7 +16,10 @@ function App() {
         <Route path="/tv/*" element={<Tv />}>
           <Route path="tv/:id" element={<TvSlider />} />
         </Route>
-        <Route path="/search" element={<Search />} />
+        <Route path="/search/*" element={<Search />}>
+          <Route path="search/movies/:id" element={<Search />} />
+          <Route path="search/tv/:id" element={<Search />} />
+        </Route>
       </Routes>
     </Router>
   );

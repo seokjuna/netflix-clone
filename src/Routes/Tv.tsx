@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import styled from "styled-components";
-import { IGetTvShow, getTvShow } from "../api";
+import { IGetTvShowResult, getTvShow } from "../api";
 import { makeImagePath } from "./utils";
 import TvSlider from "../Components/TvSlider";
 
@@ -39,7 +39,7 @@ const Overview = styled.p`
 `;
 
 function Tv() {    
-    const { data: onTheAir, isLoading } = useQuery<IGetTvShow>(
+    const { data: onTheAir, isLoading } = useQuery<IGetTvShowResult>(
         ["tvshows", "onTheAir"],
         getTvShow
     );
