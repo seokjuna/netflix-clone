@@ -180,7 +180,7 @@ function HomeSlider() {
     const [topRatedIndex, setTopRatedIndex] = useState(0);
     const [leaving, setLeaving] = useState(false);
     const toggleLeaving = () => setLeaving((prev) => !prev);
-    const nowPlayingIncreaseIndex = () => {
+    const increaseNowPlayingIndex = () => {
         if (nowPlaying) {
             if (leaving) return;
             toggleLeaving();
@@ -227,6 +227,7 @@ function HomeSlider() {
     return (
         <>
             <Slider>
+                <button onClick={increaseNowPlayingIndex}>nowPlaying increase</button>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row 
                         initial={{ x: width + 5 }}
