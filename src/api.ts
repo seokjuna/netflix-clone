@@ -39,3 +39,26 @@ export function getTopRatedMovies() {
         .then((response) => response.json()
     );
 }
+
+interface ITv {
+    id: number;
+    backdrop_path: string;
+    poster_path: string;
+    name: string;
+    overview: string;
+    vote_average: number;
+    first_air_date: string;
+}
+
+export interface IGetTvShow {
+    page: number;
+    results: ITv[];
+    total_pages: number;
+    total_results: number;
+}
+
+export function getTvShow() {
+    return fetch(`${BASE_PATH}/tv/on_the_air?api_key=${API_KEY}&language=ko`)
+        .then((response) => response.json()
+    );
+}
