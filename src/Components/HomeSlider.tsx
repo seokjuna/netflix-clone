@@ -227,7 +227,7 @@ function HomeSlider() {
     return (
         <>
             <Slider>
-                <button onClick={increaseNowPlayingIndex}>nowPlaying increase</button>
+                <button onClick={increaseNowPlayingIndex}>increase</button>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row 
                         initial={{ x: width + 5 }}
