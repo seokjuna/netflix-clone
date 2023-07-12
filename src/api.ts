@@ -7,6 +7,8 @@ interface IMovie { // IGetMoviesResult의 results
     poster_path: string;
     title: string;
     overview: string;
+    vote_average: number;
+    release_date: string;
 }
 
 export interface IGetMoviesResult {
