@@ -62,3 +62,15 @@ export function getTvShow() {
         .then((response) => response.json()
     );
 }
+
+export function getPopularTvShow() {
+    return fetch(`${BASE_PATH}/tv/popular?api_key=${API_KEY}&language=ko`)
+        .then((response) => response.json()
+    );
+}
+
+export function getTopRatedTvShow() {
+    return fetch(`${BASE_PATH}/tv/top_rated?api_key=${API_KEY}&language=ko`)
+        .then((response) => response.json()
+    );
+}

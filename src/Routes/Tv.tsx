@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import styled from "styled-components";
 import { IGetTvShow, getTvShow } from "../api";
 import { makeImagePath } from "./utils";
+import TvSlider from "../Components/TvSlider";
 
 const Wrapper = styled.div`
     background: black;
@@ -55,6 +56,7 @@ function Tv() {
                         <Title>{onTheAir?.results[0].name}</Title>
                         <Overview>{onTheAir?.results[0].overview ? onTheAir?.results[0].overview : "설명이 없습니다. 😅"}</Overview>
                     </Banner>
+                    <TvSlider />
                 </>
             )}
         </Wrapper>
