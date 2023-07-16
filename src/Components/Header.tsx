@@ -152,6 +152,8 @@ function Header() {
     const { register, handleSubmit } = useForm<IForm>();
     const onValid = (data: IForm) => {
         navigate(`/search?keyword=${data.keyword}`);
+        // 자동 새로고침
+        window.location.reload();
     };
     
     return (

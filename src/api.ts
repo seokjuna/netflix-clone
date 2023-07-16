@@ -1,5 +1,5 @@
-const API_KEY = "42b1dc84b3aff38d2a29e1a4f1bc2112";
-const BASE_PATH = "https://api.themoviedb.org/3";
+export const API_KEY = "42b1dc84b3aff38d2a29e1a4f1bc2112";
+export const BASE_PATH = "https://api.themoviedb.org/3";
 
 interface IMovie { // IGetMoviesResult의 results
     id: number;
@@ -50,7 +50,7 @@ interface ITv {
     first_air_date: string;
 }
 
-export interface IGetTvShow {
+export interface IGetTvShowResult {
     page: number;
     results: ITv[];
     total_pages: number;

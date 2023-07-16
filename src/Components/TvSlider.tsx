@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import styled from "styled-components";
 import useWindowDimensions from "./useWindowDimensions";
-import { IGetTvShow, getPopularTvShow, getTopRatedTvShow, getTvShow } from "../api";
+import { IGetTvShowResult, getPopularTvShow, getTopRatedTvShow, getTvShow } from "../api";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
@@ -156,20 +156,29 @@ const BigOverview = styled.p`
     color: ${(props) => props.theme.white.lighter};
 `;
 
+const Category = styled.h2`
+    color: white;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 30px;
+    text-shadow: black 2px 2px 2px;
+`;
+
 const offset = 6;
 
 function TvSlider() {
     const width = useWindowDimensions();
     // api 받아오기
-    const { data: onTheAir } = useQuery<IGetTvShow>(
+    const { data: onTheAir } = useQuery<IGetTvShowResult>(
         ["tvShow", "onTheAir"],
         getTvShow
     );
-    const { data: popular } = useQuery<IGetTvShow>(
+    const { data: popular } = useQuery<IGetTvShowResult>(
         ["tvShow", "popular"],
         getPopularTvShow
     );
-    const { data: topRated } = useQuery<IGetTvShow>(
+    const { data: topRated } = useQuery<IGetTvShowResult>(
         ["tvShow", "topRated"],
         getTopRatedTvShow
     );
@@ -227,6 +236,7 @@ function TvSlider() {
     return (
         <>
             <Slider>
+                <Category>방영 중인 TV 프로그램</Category>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row
                         initial={{ x: width + 5 }}
@@ -263,6 +273,7 @@ function TvSlider() {
                 </AnimatePresence>
             </Slider>
             <Slider>
+                <Category>인기있는 TV 프로그램</Category>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row
                         initial={{ x: width + 5 }}
@@ -297,41 +308,7 @@ function TvSlider() {
                 </AnimatePresence>
             </Slider>
             <Slider>
-                <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
-                    <Row
-                        initial={{ x: width + 5 }}
-                        animate={{ x: 0 }}
-                        exit={{ x: -width - 5 }}
-                        key={popularIndex}
-                        transition={{ type: "tween", duration: 1}}
-                    >
-                        {popular?.results
-                            .slice(1)
-                            .slice(offset * popularIndex, offset * popularIndex + offset)
-                            .map((tvshow) => (
-                                <Box 
-                                    onClick={() => onBoxClicked(tvshow.id)}
-                                    key={tvshow.id}                                        
-                                    bgphoto={makeImagePath(tvshow.backdrop_path || tvshow.poster_path, "w500")}
-                                    whileHover="hover"
-                                    initial="normal"
-                                    variants={boxVariants}
-                                    transition={{ type: "tween" }}
-                                >
-                                    <Title>{tvshow.name}</Title>
-                                    <Info
-                                        variants={infoVariants}
-                                    >
-                                        <h4>⭐️ {tvshow.vote_average}</h4>
-                                        <h4>방영일: {tvshow.first_air_date}</h4>
-                                    </Info>   
-                                </Box>
-                            ))
-                        }                        
-                    </Row>
-                </AnimatePresence>
-            </Slider>
-            <Slider>
+                <Category>평점 높은 TV 프로그램</Category>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row
                         initial={{ x: width + 5 }}

@@ -156,6 +156,15 @@ const BigOverview = styled.p`
     color: ${(props) => props.theme.white.lighter};
 `;
 
+const Category = styled.h2`
+    color: white;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 30px;
+    text-shadow: black 2px 2px 2px;
+`;
+
 const offset = 6;
 
 function HomeSlider() {
@@ -227,6 +236,7 @@ function HomeSlider() {
     return (
         <>
             <Slider>
+                <Category>상영 중인 영화</Category>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row 
                         initial={{ x: width + 5 }}
@@ -262,6 +272,7 @@ function HomeSlider() {
                 </AnimatePresence>
             </Slider>
             <Slider>
+                <Category>상영예정작</Category>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row
                         initial={{ x: width + 5 }}
@@ -296,6 +307,7 @@ function HomeSlider() {
                 </AnimatePresence>
             </Slider>
             <Slider>
+                <Category>평점 높은 영화</Category>
                 <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
                     <Row
                         initial={{ x: width + 5 }}
@@ -355,7 +367,7 @@ function HomeSlider() {
                                             <h4>⭐️ </h4>
                                             <h4>{clickedNowPlayingMovie.vote_average}</h4>
                                         </BigVote>
-                                        <BigOverview>{clickedNowPlayingMovie.overview}</BigOverview>
+                                        <BigOverview>{clickedNowPlayingMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
                                 </>
                             }
@@ -376,7 +388,7 @@ function HomeSlider() {
                                             <h4>⭐️ </h4>
                                             <h4>{clickedUpcomingMovie.vote_average}</h4>
                                         </BigVote>
-                                        <BigOverview>{clickedUpcomingMovie.overview}</BigOverview>
+                                        <BigOverview>{clickedUpcomingMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
                             </>
                             }
