@@ -396,7 +396,7 @@ function TvSlider() {
                                     </BigInfo>
                                 </>
                             }
-                                                        {clickedTopRatedTv && 
+                            {clickedTopRatedTv && 
                                 <>
                                     <BigCover 
                                         style={{
