@@ -49,6 +49,7 @@ const Item = styled.li`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    font-family: 400;
 `;
 
 const Search = styled.form`
@@ -178,17 +179,17 @@ function Header() {
                 <Items>
                     <Item>
                         <Link to="/">
-                            Home {homeMatch && <Circle layoutId="circle" />}
+                            MOVIES {homeMatch && <Circle layoutId="circle" />}
                         </Link>
                     </Item>
                     <Item>
                         <Link to="/tv">
-                            TV Shows {tvMatch && <Circle layoutId="circle" />}
+                            TV SHOWS {tvMatch && <Circle layoutId="circle" />}
                         </Link>
                     </Item>
                     <Item>
                         <Link to="/search">
-                            Search {searchMatch && <Circle />}
+                            SEARCH {searchMatch && <Circle />}
                         </Link>
                     </Item>
                 </Items>

@@ -5,6 +5,7 @@ import { makeImagePath } from "./utils";
 import TvSlider from "../Components/TvSlider";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const Wrapper = styled.div`
     background: black;
@@ -65,6 +66,9 @@ function Tv() {
 
     return (
         <Wrapper>
+            <Helmet>
+                <title>TV SHOWS: NOMFLIX</title>
+            </Helmet>
             {isLoading ? (
                 <Loader>Loading...</Loader>
             ) : (

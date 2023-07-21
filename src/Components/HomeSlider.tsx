@@ -6,6 +6,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { IGetMoviesResult, getMovies, getTopRatedMovies, getUpcomingMovies } from "../api";
 import { makeImagePath } from "../Routes/utils";
+import { Helmet } from "react-helmet-async";
 
 const Slider = styled.div`
     position: relative;
@@ -216,15 +217,6 @@ function HomeSlider() {
             setNowPlayingIndex((prev) => prev === maxIndex ? 0 : prev + 1);
         }
     }
-    const decraseeNowPlayingIndex = () => {
-        if (nowPlaying) {
-            if (leaving) return;
-            toggleLeaving();
-            const totalMovies = nowPlaying.results.length;
-            const maxIndex = Math.floor(totalMovies / offset) - 1;
-            setNowPlayingIndex((prev) => prev === maxIndex ? prev - 1 : 0);
-        }
-    }
     const increaseUpcomingIndex = () => {
         if (upcoming) {
             if (leaving) return;
@@ -397,6 +389,9 @@ function HomeSlider() {
                         <BigMovie>
                             {clickedNowPlayingMovie && 
                                 <>
+                                    <Helmet>
+                                        <title>{clickedNowPlayingMovie.title}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
@@ -418,6 +413,9 @@ function HomeSlider() {
                             }
                             {clickedUpcomingMovie &&
                                 <>
+                                    <Helmet>
+                                        <title>{clickedUpcomingMovie.title}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
@@ -439,6 +437,9 @@ function HomeSlider() {
                             }
                             {clickedTopRatedMovie && 
                                     <>
+                                        <Helmet>
+                                            <title>{clickedTopRatedMovie.title}</title>
+                                        </Helmet>
                                         <BigCover
                                             style={{
                                                 backgroundImage: `

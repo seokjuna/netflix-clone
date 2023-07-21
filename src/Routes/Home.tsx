@@ -5,6 +5,7 @@ import { makeImagePath } from "./utils";
 import HomeSlider from "../Components/HomeSlider";
 import { AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Wrapper = styled.div`
     background: black;
@@ -65,6 +66,9 @@ function Home() {
 
     return (
         <Wrapper>
+            <Helmet>
+                <title>MOVIES: NOMFLIX</title>
+            </Helmet>
             {isLoading ? (
                 <Loader>Loading...</Loader>
             ) : (

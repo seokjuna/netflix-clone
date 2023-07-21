@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router-dom";
 import { makeImagePath } from "../Routes/utils";
+import { Helmet } from "react-helmet-async";
 
 const Slider = styled.div`
     position: relative;
@@ -391,6 +392,9 @@ function TvSlider() {
                         >
                             {clickedOnTheAirTv &&
                                 <>
+                                    <Helmet>
+                                        <title>{clickedOnTheAirTv.name}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
@@ -411,7 +415,10 @@ function TvSlider() {
                                 </>
                             }
                             {clickedPopularTv && 
-                                <>
+                                <>      
+                                    <Helmet>
+                                        <title>{clickedPopularTv.name}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
@@ -433,6 +440,9 @@ function TvSlider() {
                             }
                             {clickedTopRatedTv && 
                                 <>
+                                    <Helmet>
+                                        <title>{clickedTopRatedTv.name}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `

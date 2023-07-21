@@ -6,6 +6,7 @@ import { API_KEY, BASE_PATH, IGetMoviesResult, IGetTvShowResult } from "../api";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { makeImagePath } from "./utils";
+import { Helmet } from "react-helmet-async";
 
 const Slider = styled.div`
     position: relative;
@@ -270,6 +271,9 @@ function Search() {
 
     return (
         <>
+            <Helmet>
+                <title>MOVIES: NOMFLIX</title>
+            </Helmet>
             {keyword && result?.length !== 0 ? (
                 <>
                     <Slider>
@@ -374,6 +378,9 @@ function Search() {
                         >
                             {clickedMovie && 
                                 <>
+                                    <Helmet>
+                                        <title>{clickedMovie.title}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
@@ -408,6 +415,9 @@ function Search() {
                         >
                             {clickedTv && 
                                 <>
+                                    <Helmet>
+                                        <title>{clickedTv.name}</title>
+                                    </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
