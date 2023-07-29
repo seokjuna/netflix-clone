@@ -108,7 +108,7 @@ const BigMovie = styled(motion.div)`
     margin: 0 auto;
     background-color: ${(props) => props.theme.black.lighter};
     border-radius: 15px;
-    overflow: hidden;
+    
 `;
 
 const BigCover = styled.div`
@@ -377,9 +377,9 @@ function HomeSlider() {
                         }
                     </Row>
                 </AnimatePresence>
-            </Slider>            
+            </Slider>     
             <AnimatePresence>
-                {bigMovieMatch ? (
+                {clickedNowPlayingMovie ? (
                     <>
                         <Overlay 
                             onClick={onOverlayClick} 
@@ -411,7 +411,20 @@ function HomeSlider() {
                                     </BigInfo>
                                 </>
                             }
-                            {clickedUpcomingMovie &&
+                        </BigMovie>
+                    </>
+                ) : null}
+            </AnimatePresence>
+            <AnimatePresence>
+            {clickedUpcomingMovie ? (
+                    <>
+                        <Overlay 
+                            onClick={onOverlayClick} 
+                            exit={{ opacity: 0 }} 
+                            animate={{ opacity: 1 }} 
+                        />
+                        <BigMovie>
+                            {clickedUpcomingMovie && 
                                 <>
                                     <Helmet>
                                         <title>{clickedUpcomingMovie.title}</title>
@@ -433,34 +446,47 @@ function HomeSlider() {
                                         </BigVote>
                                         <BigOverview>{clickedUpcomingMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
-                            </>
+                                </>
                             }
-                            {clickedTopRatedMovie && 
-                                    <>
-                                        <Helmet>
-                                            <title>{clickedTopRatedMovie.title}</title>
-                                        </Helmet>
-                                        <BigCover
-                                            style={{
-                                                backgroundImage: `
-                                                    linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent),
-                                                    url(${makeImagePath(clickedTopRatedMovie.backdrop_path || clickedTopRatedMovie.poster_path, "w500")
-                                                })`,
-                                            }}
-                                        >
-                                            <BigTitle>{clickedTopRatedMovie.title}</BigTitle>
-                                        </BigCover>
-                                        <BigInfo>
-                                            <BigVote>
-                                                <h4>⭐️ </h4>
-                                                <h4>{clickedTopRatedMovie.vote_average}</h4>
-                                            </BigVote>
-                                            <BigOverview>{clickedTopRatedMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
-                                        </BigInfo>
-                                    </>
-                                }
                         </BigMovie>
-                    </> 
+                    </>
+                ) : null}
+            </AnimatePresence>
+            <AnimatePresence>
+            {clickedTopRatedMovie ? (
+                    <>
+                        <Overlay 
+                            onClick={onOverlayClick} 
+                            exit={{ opacity: 0 }} 
+                            animate={{ opacity: 1 }} 
+                        />
+                        <BigMovie>
+                            {clickedTopRatedMovie && 
+                                <>
+                                    <Helmet>
+                                        <title>{clickedTopRatedMovie.title}</title>
+                                    </Helmet>
+                                    <BigCover 
+                                        style={{
+                                            backgroundImage: `
+                                                linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent),
+                                                url(${makeImagePath(clickedTopRatedMovie.backdrop_path || clickedTopRatedMovie.poster_path, "w500")
+                                            })`,
+                                        }}
+                                    >
+                                        <BigTitle>{clickedTopRatedMovie.title}</BigTitle>
+                                    </BigCover>
+                                    <BigInfo>
+                                        <BigVote>
+                                            <h4>⭐️ </h4>
+                                            <h4>{clickedTopRatedMovie.vote_average}</h4>
+                                        </BigVote>
+                                        <BigOverview>{clickedTopRatedMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
+                                    </BigInfo>
+                                </>
+                            }
+                        </BigMovie>
+                    </>
                 ) : null}
             </AnimatePresence>
         </>

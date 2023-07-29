@@ -107,7 +107,6 @@ const BigTv = styled(motion.div)`
     margin: 0 auto;
     background-color: ${(props) => props.theme.black.lighter};
     border-radius: 15px;
-    overflow: hidden;
 `;
 
 const BigCover = styled.div`
@@ -380,7 +379,7 @@ function TvSlider() {
                 </AnimatePresence>
             </Slider>
             <AnimatePresence>
-                {bigTvMatch ? (
+                {clickedOnTheAirTv ? (
                     <>
                         <Overlay 
                             onClick={onOverlayClick}
@@ -414,30 +413,60 @@ function TvSlider() {
                                     </BigInfo>
                                 </>
                             }
-                            {clickedPopularTv && 
-                                <>      
+                        </BigTv>
+                    </>
+                ) : null}
+            </AnimatePresence>
+            <AnimatePresence>
+                {clickedOnTheAirTv ? (
+                    <>
+                        <Overlay 
+                            onClick={onOverlayClick}
+                            exit={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                        />
+                        <BigTv
+                            transition={{ type: "tween", duration: 1 }}
+                        >
+                            {clickedOnTheAirTv &&
+                                <>
                                     <Helmet>
-                                        <title>{clickedPopularTv.name}</title>
+                                        <title>{clickedOnTheAirTv.name}</title>
                                     </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
                                                 linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent),
-                                                url(${makeImagePath(clickedPopularTv.backdrop_path || clickedPopularTv.poster_path, "w500")
+                                                url(${makeImagePath(clickedOnTheAirTv.backdrop_path || clickedOnTheAirTv.poster_path, "w500")
                                             })`,
                                         }}
-                                     >
-                                        <BigTitle>{clickedPopularTv.name}</BigTitle>
+                                    >
+                                        <BigTitle>{clickedOnTheAirTv.name}</BigTitle>
                                     </BigCover>
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedPopularTv.vote_average}</h4>
+                                            <h4>{clickedOnTheAirTv.vote_average}</h4>
                                         </BigVote>
-                                        <BigOverview>{clickedPopularTv.overview ? clickedPopularTv.overview : "설명이 없습니다. 😅"}</BigOverview>
+                                        <BigOverview>{clickedOnTheAirTv.overview ? clickedOnTheAirTv.overview : "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
                                 </>
                             }
+                        </BigTv>
+                    </>
+                ) : null}
+            </AnimatePresence>
+            <AnimatePresence>
+                {clickedTopRatedTv ? (
+                    <>
+                        <Overlay 
+                            onClick={onOverlayClick}
+                            exit={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                        />
+                        <BigTv
+                            transition={{ type: "tween", duration: 1 }}
+                        >
                             {clickedTopRatedTv && 
                                 <>
                                     <Helmet>
@@ -465,7 +494,7 @@ function TvSlider() {
                         </BigTv>
                     </>
                 ) : null}
-            </AnimatePresence>
+            </AnimatePresence>                
         </>
     );
 }
