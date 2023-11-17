@@ -62,7 +62,7 @@ const Title = styled.h3`
     font-weight: 400;
     text-align: center;
     text-shadow: black 2px 2px 2px;
-    position: absolute;
+    position: relative;
 `;
 
 const Info = styled(motion.div)`
@@ -113,7 +113,7 @@ const BigMovie = styled(motion.div)`
 
 const BigCover = styled.div`
     border-radius: 15px 15px 0 0;
-    height: 380px;
+    height: 60%;
     background-color: white;
     background-size: cover;
     background-position: center top;
@@ -136,7 +136,7 @@ const BigInfo = styled.div`
     justify-content: flex-start;
     align-items: center;    
     width: 100%;
-    height: 233px;
+    height: 40%;
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 0px 0px 15px 15px;
