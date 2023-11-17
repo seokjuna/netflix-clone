@@ -286,7 +286,7 @@ function TvSlider() {
                                     <Info
                                         variants={infoVariants}
                                     >
-                                        <h4>⭐️ {tvshow.vote_average}</h4>
+                                        <h4>⭐️ {tvshow.vote_average.toFixed(1)}</h4>
                                         <h4>방영일: {tvshow.first_air_date}</h4>
                                     </Info>   
                                 </Box>
@@ -327,7 +327,7 @@ function TvSlider() {
                                     <Info
                                         variants={infoVariants}
                                     >
-                                        <h4>⭐️ {tvshow.vote_average}</h4>
+                                        <h4>⭐️ {tvshow.vote_average.toFixed(1)}</h4>
                                         <h4>방영일: {tvshow.first_air_date}</h4>
                                     </Info>   
                                 </Box>
@@ -369,7 +369,7 @@ function TvSlider() {
                                     <Info
                                         variants={infoVariants}
                                     >
-                                        <h4>⭐️ {tvshow.vote_average}</h4>
+                                        <h4>⭐️ {tvshow.vote_average.toFixed(1)}</h4>
                                         <h4>방영일: {tvshow.first_air_date}</h4>
                                     </Info>   
                                 </Box>
@@ -407,7 +407,7 @@ function TvSlider() {
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedOnTheAirTv.vote_average}</h4>
+                                            <h4>{clickedOnTheAirTv.vote_average.toFixed(1)}</h4>
                                         </BigVote>
                                         <BigOverview>{clickedOnTheAirTv.overview ? clickedOnTheAirTv.overview : "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
@@ -418,7 +418,7 @@ function TvSlider() {
                 ) : null}
             </AnimatePresence>
             <AnimatePresence>
-                {clickedOnTheAirTv ? (
+                {clickedPopularTv ? (
                     <>
                         <Overlay 
                             onClick={onOverlayClick}
@@ -428,27 +428,27 @@ function TvSlider() {
                         <BigTv
                             transition={{ type: "tween", duration: 1 }}
                         >
-                            {clickedOnTheAirTv &&
+                            {clickedPopularTv &&
                                 <>
                                     <Helmet>
-                                        <title>{clickedOnTheAirTv.name}</title>
+                                        <title>{clickedPopularTv.name}</title>
                                     </Helmet>
                                     <BigCover 
                                         style={{
                                             backgroundImage: `
                                                 linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent),
-                                                url(${makeImagePath(clickedOnTheAirTv.backdrop_path || clickedOnTheAirTv.poster_path, "w500")
+                                                url(${makeImagePath(clickedPopularTv.backdrop_path || clickedPopularTv.poster_path, "w500")
                                             })`,
                                         }}
                                     >
-                                        <BigTitle>{clickedOnTheAirTv.name}</BigTitle>
+                                        <BigTitle>{clickedPopularTv.name}</BigTitle>
                                     </BigCover>
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedOnTheAirTv.vote_average}</h4>
+                                            <h4>{clickedPopularTv.vote_average.toFixed(1)}</h4>
                                         </BigVote>
-                                        <BigOverview>{clickedOnTheAirTv.overview ? clickedOnTheAirTv.overview : "설명이 없습니다. 😅"}</BigOverview>
+                                        <BigOverview>{clickedPopularTv.overview ? clickedPopularTv.overview : "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
                                 </>
                             }
@@ -485,7 +485,7 @@ function TvSlider() {
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedTopRatedTv.vote_average}</h4>
+                                            <h4>{clickedTopRatedTv.vote_average.toFixed(1)}</h4>
                                         </BigVote>
                                         <BigOverview>{clickedTopRatedTv.overview ? clickedTopRatedTv.overview : "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>

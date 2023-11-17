@@ -200,7 +200,7 @@ function HomeSlider() {
     const { data: topRated } = useQuery<IGetMoviesResult>(
         ["movies", "topRated"],
         getTopRatedMovies
-    );
+    ); 
 
     // 슬라이더 index
     const [nowPlayingIndex, setNowPlayingIndex] = useState(0);
@@ -251,7 +251,7 @@ function HomeSlider() {
         upcoming?.results.find(movie => String(movie.id) === bigMovieMatch.params.movieId);
     const clickedTopRatedMovie = 
         bigMovieMatch?.params.movieId && 
-        topRated?.results.find(movie => String(movie.id) === bigMovieMatch.params.movieId);    
+        topRated?.results.find(movie => String(movie.id) === bigMovieMatch.params.movieId);
     return (
         <>
             <Slider>
@@ -287,7 +287,7 @@ function HomeSlider() {
                                     <Info 
                                         variants={infoVariants}
                                     >
-                                        <h4>⭐️ {movie.vote_average}</h4>
+                                        <h4>⭐️ {movie.vote_average.toFixed(1)}</h4>
                                         <h4>개봉일: {movie.release_date}</h4>
                                     </Info>
                                 </Box>
@@ -328,7 +328,7 @@ function HomeSlider() {
                                     <Info 
                                         variants={infoVariants}
                                     >
-                                        <h4>⭐️ {movie.vote_average}</h4>
+                                        <h4>⭐️ {movie.vote_average.toFixed(1)}</h4>
                                         <h4>개봉일: {movie.release_date}</h4>
                                     </Info>
                                 </Box>
@@ -369,7 +369,7 @@ function HomeSlider() {
                                     <Info 
                                         variants={infoVariants}
                                     >
-                                        <h4>⭐️ {movie.vote_average}</h4>
+                                        <h4>⭐️ {movie.vote_average.toFixed(1)}</h4>
                                         <h4>개봉일: {movie.release_date}</h4>
                                     </Info>
                                 </Box>
@@ -405,7 +405,7 @@ function HomeSlider() {
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedNowPlayingMovie.vote_average}</h4>
+                                            <h4>{clickedNowPlayingMovie.vote_average.toFixed(1)}</h4>
                                         </BigVote>
                                         <BigOverview>{clickedNowPlayingMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
@@ -442,7 +442,7 @@ function HomeSlider() {
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedUpcomingMovie.vote_average}</h4>
+                                            <h4>{clickedUpcomingMovie.vote_average.toFixed(1)}</h4>          
                                         </BigVote>
                                         <BigOverview>{clickedUpcomingMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>
@@ -479,7 +479,7 @@ function HomeSlider() {
                                     <BigInfo>
                                         <BigVote>
                                             <h4>⭐️ </h4>
-                                            <h4>{clickedTopRatedMovie.vote_average}</h4>
+                                            <h4>{clickedTopRatedMovie.vote_average.toFixed(1)}</h4>
                                         </BigVote>
                                         <BigOverview>{clickedTopRatedMovie.overview || "설명이 없습니다. 😅"}</BigOverview>
                                     </BigInfo>

@@ -17,7 +17,7 @@ export interface IGetMoviesResult {
         minimun: string;
     };
     page: number;
-		results: IMovie[]; // IMovie의 배열
+	results: IMovie[]; // IMovie의 배열
     total_pages: number;
     total_results: number;
 }
