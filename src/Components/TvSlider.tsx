@@ -134,9 +134,10 @@ const BigInfo = styled.div`
     justify-content: flex-start;
     align-items: center;    
     width: 100%;
-    height: 250px;
+    height: 233px;
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0px 0px 15px 15px;
 `;
 
 const BigVote = styled.span`
